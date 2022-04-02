@@ -1,10 +1,20 @@
 <script lang="ts">
+
+	import { Button } from 'attractions';
+
 	export let name: string;
+
+	function changeName() {
+		name = "Ben"
+	}
 </script>
 
 <main>
-	<h1>Hello {name}!</h1>
-	<p>Visit the <a href="https://svelte.dev/tutorial">Svelte tutorial</a> to learn how to build Svelte apps.</p>
+	<div class="py-2 justify-center items-center">
+		<h1>Hello {name}!</h1>
+		<p>Visit the <a href="https://svelte.dev/tutorial">Svelte tutorial</a> to learn how to build Svelte apps.</p>
+		<Button style=";" on:click={changeName}>Change Name</Button>
+	</div>
 </main>
 
 <style>

@@ -1,0 +1,58 @@
+/// <reference types="svelte" />
+import { SvelteComponentTyped } from "svelte";
+import { CheckboxChipProps } from "./checkbox-chip.svelte";
+
+export interface CheckboxChipGroupProps extends CheckboxChipProps {
+  /**
+   * A class string to add to the `<CheckboxChip>` components inside.
+   * @default null
+   */
+  checkboxClass?: string | false | null;
+
+  /**
+   * A class string to add to the wrapping `<span>` around the chips' labels. If it's not specified, the `<span>` will not be added.
+   * @default null
+   */
+  labelClass?: string | false | null;
+
+  /**
+   * An array of items, where only the value field is required.
+   * Must contain at least one value.
+   */
+  items?: Array<{
+    value: string;
+    label?: string;
+    checked?: boolean;
+    disabled?: boolean;
+  }>;
+
+  /**
+   * The name to assign to all checkboxes belonging to the same group.
+   * Check [MDN docs](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#htmlattrdefname) for more information.
+   */
+  name?: string;
+
+  /**
+   * The maximum allowed number of chips to select.
+   */
+  max?: number;
+
+  /**
+   * The text displayed in the tooltip when hovering over the checkboxes
+   * after the maximum allowed selection has been reached.
+   * @default null
+   */
+  maxReachedTooltip?: string | null;
+}
+
+export default class CheckboxChipGroup extends SvelteComponentTyped<
+  CheckboxChipGroupProps,
+  {
+    change: CustomEvent<{
+      value: string;
+      checked: boolean;
+      nativeEvent: Event;
+    }>;
+  },
+  {}
+> {}
