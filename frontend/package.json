@@ -4,8 +4,8 @@
   "private": true,
   "scripts": {
     "build": "rollup -c",
-    "dev": "rollup -c -w",
-    "start": "sirv public --no-clear",
+    "dev": "rollup -c -w  --single",
+    "start": "sirv public --single",
     "check": "svelte-check --tsconfig ./tsconfig.json"
   },
   "devDependencies": {
@@ -28,6 +28,7 @@
     "typescript": "^4.0.0"
   },
   "dependencies": {
+    "page": "^1.11.6",
     "sirv-cli": "^2.0.0",
     "smelte": "^1.1.8"
   }
