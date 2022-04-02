@@ -16,12 +16,15 @@
 
   async function searchGoogle() {
     isLoading = true
-    const endpoint = `http://localhost:3000/search?query=${searchQuery}`
+    const endpoint = `http://localhost:8000/search?query=${searchQuery}`
 
     try {
       const res = await fetch(endpoint)
       const data = await res.json()
       $searchArticles = data
+
+      console.log(data);
+      
     } catch (e) {
       alert('An error occured!')
     }

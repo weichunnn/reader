@@ -1,16 +1,19 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-import spacy
-from spacy_readability import Readability
 from dotenv import load_dotenv, find_dotenv
+from readability import Readability
 import os
 import requests
+from bs4 import BeautifulSoup
+from urllib.request import Request, urlopen
+import re
+import html2text
 
 
 app = FastAPI()
 load_dotenv(find_dotenv())
 
-origins = ["http://localhost:3000"]
+origins = ["*"]
 
 
 app.add_middleware(
@@ -29,40 +32,62 @@ async def read_root() -> dict:
 
 @app.get("/results")
 async def read_root(query: str) -> dict:
-    BASE_URL = "https://www.googleapis.com/customsearch/v1?safe=active&?key="
+    BASE_URL = "https://www.googleapis.com/customsearch/v1?key="
 
-    URL = BASE_URL + f"{os.getenv('API_KEY')}&cx={os.getenv('CONTEXT_KEY')}&q={query}"
-
-    print(URL)
+    URL = (
+        BASE_URL
+        + f"{os.getenv('API_KEY')}&cx={os.getenv('CONTEXT_KEY')}&q={query}&safe=active&"
+    )
 
     res = requests.get(URL)
 
-    return res.json()
+    res_json = res.json()
 
+    items = res_json["items"]
 
-@app.get("/metrics", tags=["root"])
-async def read_root(text: str) -> dict:
+    res_list = []
+    for idx, item in enumerate(items):
+        temp_dict = {
+            "id": idx,
+            "title": item["title"],
+            "description": item["snippet"],
+            "link": item["link"],
+        }
+        res_list.append(temp_dict)
 
-    r = Readability(text)
+    return res_list
 
-    flesch_kincaid = r.flesch_kincaid()
-    flesch = r.flesch()
-    gunning_fog = r.gunning_fog()
-    coleman_liau = r.coleman_liau()
-    dale_chall = r.dale_chall()
-    ari = r.ari()
-    linsear_write = r.linsear_write()
-    smog = r.smog()
-    spache = r.spache()
+    # article_text = {}
 
-    return {
-        "flesch_kincaid": flesch_kincaid,
-        "flesch": flesch,
-        "gunning_fog": gunning_fog,
-        "coleman_liau": coleman_liau,
-        "dale_chall": dale_chall,
-        "ari": ari,
-        "linsear_write": linsear_write,
-        "smog": smog,
-        "spache": spache,
-    }
+    # for url in urls:
+    #     req = Request(url)
+    #     html_page = urlopen(req)
+
+    #     soup = BeautifulSoup(html_page, "html.parser")
+    #     h = html2text.HTML2Text()
+    #     h.ignore_links = True
+
+    #     text = h.handle(str(soup))
+
+    #     article_text[url] = text
+
+    # metric_dict = {}
+    # for url, text in enumerate(article_text):
+
+    #     try:
+    #         r = Readability(text)
+
+    #         metric_dict[url] = {
+    #             "flesch_kincaid": r.flesch_kincaid(),
+    #             "flesch": r.flesch(),
+    #             "gunning_fog": r.gunning_fog(),
+    #             "coleman_liau": r.coleman_liau(),
+    #             "dale_chall": r.dale_chall(),
+    #             "ari": r.ari(),
+    #             "linsear_write": r.linsear_write(),
+    #             "smog": r.smog(),
+    #             "spache": r.spache(),
+    #         }
+    #     except Exception:
+
+    # return metric_dict
