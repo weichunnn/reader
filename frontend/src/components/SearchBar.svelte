@@ -11,7 +11,7 @@
     bind:value={$searchTerm}
     class="search"
     class:nav-search={isNav}
-    placeholder="Try searching 'What is Life?'"
+    placeholder="Try searching 'What is Gravity?'"
   />
   {#if !isNav}
     <div class="btn-bar">

@@ -1,9 +1,24 @@
 <script>
-  import { loop_guard } from 'svelte/internal'
   import { fade } from 'svelte/transition'
   import { currentId } from '../store'
 
   export let articles
+
+  const difficultyLevel = (val) => {
+    if (['VERY_EASY', 'EASY', 'FAIRLY_EASY'].includes(val.toUpperCase())) {
+      return 'Basic'
+    } else if (['STANDARD', 'FAIRLY_DIFFICULT'].includes(val.toUpperCase())) {
+      return 'Intermediate'
+    } else if (['DIFFICULT', 'VERY_CONFUSING'].includes(val.toUpperCase())) {
+      return 'Advanced'
+    }
+  }
+
+  const colorMode = (value) => {
+    if (value === 'Basic') return 'background-color:yellow'
+    else if (value === 'Intermediate') return 'background-color:green'
+    else return 'background-color:aqua'
+  }
 
   $: articles_length = articles.length
   let randomTime = Math.random().toFixed(2)
@@ -15,7 +30,23 @@
     <div class="card">
       <div class="card-content">
         <a href={article.link} target="_blank">
-          <p class="topLink">{article.link}</p>
+          <div class="title">
+            <span class="topLink">{article.link}</span>
+            {#if difficultyLevel(article.metrics['Flesch reading ease']) === 'Basic'}
+              <div class="badge" style="background-color:beige">
+                {difficultyLevel(article.metrics['Flesch reading ease'])}
+              </div>
+            {:else if difficultyLevel(article.metrics['Flesch reading ease']) === 'Intermediate'}
+              <div class="badge" style="background-color:#e1acff">
+                {difficultyLevel(article.metrics['Flesch reading ease'])}
+              </div>
+            {:else}
+              <div class="badge" style="background-color:aqua">
+                {difficultyLevel(article.metrics['Flesch reading ease'])}
+              </div>
+            {/if}
+          </div>
+
           <h2>{article.title}</h2>
         </a>
         <p>{article.description}</p>
@@ -36,6 +67,21 @@
 
   a:hover {
     text-decoration: underline;
+  }
+
+  .title {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 10px;
+  }
+
+  .badge {
+    padding: 10px;
+    border-radius: 10px;
+    color: black;
+    text-decoration: none;
   }
 
   .card {
@@ -60,6 +106,9 @@
     padding: 16px 24px;
     border-radius: 12px;
     margin-left: 20px;
+  }
+  .metrics:hover {
+    cursor: pointer;
   }
 
   .card:hover {

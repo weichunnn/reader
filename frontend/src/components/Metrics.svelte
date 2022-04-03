@@ -39,8 +39,7 @@
 <style>
   .stats {
     width: 45%;
-    min-height: 400px;
-    height: 100%;
+    height: 1250px;
     border-radius: 12px;
     background-color: #edf2f7;
     display: flex;
