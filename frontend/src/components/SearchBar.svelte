@@ -11,7 +11,7 @@
     bind:value={$searchTerm}
     class="search"
     class:nav-search={isNav}
-    placeholder="Search Reader for your desired reads"
+    placeholder="Try searching 'What is Life?'"
   />
   {#if !isNav}
     <div class="btn-bar">

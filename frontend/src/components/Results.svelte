@@ -59,6 +59,7 @@
     border: none;
     padding: 16px 24px;
     border-radius: 12px;
+    margin-left: 20px;
   }
 
   .card:hover {

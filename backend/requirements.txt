@@ -9,3 +9,4 @@ bs4==0.0.1
 html2text==2020.1.16
 google-api-python-client==2.42.0
 gunicorn==20.1.0
+nltk==3.7

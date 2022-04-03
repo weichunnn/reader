@@ -2,7 +2,7 @@
   import SearchBar from '../components/SearchBar.svelte'
   import Loader from '../components/Loader.svelte'
   import router from 'page'
-  import { searchArticles, searchTerm } from '../store'
+  import { searchArticles, searchTerm, currentId } from '../store'
 
   let isLoading = false
   let searchQuery = ''
@@ -15,13 +15,12 @@
 
   async function searchGoogle() {
     isLoading = true
-    const endpoint = `http://localhost:8000/results?query=${searchQuery}`
+    const endpoint = `https://api.readabl.tech/results?query=${searchQuery}`
 
     try {
       const res = await fetch(endpoint)
       const data = await res.json()
-      console.log(data)
-
+      $currentId = null
       $searchArticles = data
       router.redirect('/results')
     } catch (e) {

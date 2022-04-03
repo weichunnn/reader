@@ -17,6 +17,9 @@ from googleapiclient.discovery import build
 from bs4 import BeautifulSoup
 from urllib.request import Request, urlopen
 import html2text
+import nltk
+
+nltk.download("punkt")
 
 # calculate readibiltiy emtrics
 from readability import Readability

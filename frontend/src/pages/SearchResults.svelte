@@ -16,11 +16,12 @@
 
   async function searchGoogle() {
     isLoading = true
-    const endpoint = `http://localhost:8000/results?query=${searchQuery}`
+    const endpoint = `https://api.readabl.tech/results?query=${searchQuery}`
 
     try {
       const res = await fetch(endpoint)
       const data = await res.json()
+      $currentId = null
       $searchArticles = data
     } catch (e) {
       alert('An error occured!')
