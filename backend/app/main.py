@@ -4,7 +4,6 @@ from fastapi.middleware.cors import CORSMiddleware
 
 # misc
 import os
-import requests
 import time
 from multiprocessing import Pool
 
@@ -17,7 +16,6 @@ from googleapiclient.discovery import build
 # extract text from websites
 from bs4 import BeautifulSoup
 from urllib.request import Request, urlopen
-import re
 import html2text
 
 # calculate readibiltiy emtrics
@@ -146,13 +144,11 @@ def extract_text_metrics(url):
 
 
 def google_search(service, query, cse_id):
-
     res = service.cse().list(q=query, cx=cse_id).execute()
     return res
 
 
 def google_next_page(service, query, cse_id, res, page, url_items):
-
     next_res = (
         service.cse()
         .list(
