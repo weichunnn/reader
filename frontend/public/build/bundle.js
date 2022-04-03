@@ -478,6 +478,12 @@ var app = (function () {
         };
     }
 
+    const globals = (typeof window !== 'undefined'
+        ? window
+        : typeof globalThis !== 'undefined'
+            ? globalThis
+            : global);
+
     function destroy_block(block, lookup) {
         block.d(1);
         lookup.delete(block.key);
@@ -2054,55 +2060,54 @@ var app = (function () {
     }
 
     const searchArticles = writable([
-      {
-        id: 1,
-        title: 'somesome',
-        description: 'this is a short description',
-        link: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
-      },
-      {
-        id: 2,
-        title: 'somesome',
-        description: 'this is a short description',
-        link: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
-      },
-      {
-        id: 3,
-        title: 'somesome',
-        description: 'this is a short description',
-        link: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
-      },
-      {
-        id: 4,
-        title: 'somesome',
-        description: 'this is a short description',
-        link: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
-      },
-      {
-        id: 5,
-        title: 'somesome',
-        description: 'this is a short description',
-        link: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
-      },
-
-      {
-        id: 6,
-        title: 'somesome',
-        description: 'this is a short description',
-        link: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
-      },
-      {
-        id: 7,
-        title: 'somesome',
-        description: 'this is a short description',
-        link: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
-      },
-      {
-        id: 8,
-        title: 'somesome',
-        description: 'this is a short description',
-        link: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
-      },
+        {
+            id: 1,
+            title: 'somesome',
+            description: 'this is a short description',
+            link: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
+        },
+        {
+            id: 2,
+            title: 'somesome',
+            description: 'this is a short description',
+            link: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
+        },
+        {
+            id: 3,
+            title: 'somesome',
+            description: 'this is a short description',
+            link: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
+        },
+        {
+            id: 4,
+            title: 'somesome',
+            description: 'this is a short description',
+            link: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
+        },
+        {
+            id: 5,
+            title: 'somesome',
+            description: 'this is a short description',
+            link: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
+        },
+        {
+            id: 6,
+            title: 'somesome',
+            description: 'this is a short description',
+            link: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
+        },
+        {
+            id: 7,
+            title: 'somesome',
+            description: 'this is a short description',
+            link: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
+        },
+        {
+            id: 8,
+            title: 'somesome',
+            description: 'this is a short description',
+            link: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
+        },
     ]);
     const searchTerm = writable('');
 
@@ -2124,14 +2129,14 @@ var app = (function () {
     			t1 = space();
     			button1 = element("button");
     			button1.textContent = "I'm feeling lucky";
-    			attr_dev(button0, "class", "btn btn-right svelte-ijngk9");
+    			attr_dev(button0, "class", "btn btn-right svelte-r5jknx");
     			set_style(button0, "margin-right", "20px");
     			attr_dev(button0, "type", "submit");
     			add_location(button0, file$4, 15, 6, 397);
-    			attr_dev(button1, "class", "btn svelte-ijngk9");
+    			attr_dev(button1, "class", "btn svelte-r5jknx");
     			attr_dev(button1, "type", "submit");
     			add_location(button1, file$4, 16, 6, 496);
-    			attr_dev(div, "class", "btn-bar svelte-ijngk9");
+    			attr_dev(div, "class", "btn-bar svelte-r5jknx");
     			add_location(div, file$4, 14, 4, 369);
     		},
     		m: function mount(target, anchor) {
@@ -2171,11 +2176,11 @@ var app = (function () {
     			t = space();
     			if (if_block) if_block.c();
     			attr_dev(input, "type", "search");
-    			attr_dev(input, "class", "search svelte-ijngk9");
+    			attr_dev(input, "class", "search svelte-r5jknx");
     			attr_dev(input, "placeholder", "Search Reader for your desired reads");
     			toggle_class(input, "nav-search", /*isNav*/ ctx[0]);
     			add_location(input, file$4, 6, 2, 188);
-    			attr_dev(form, "class", "search-form svelte-ijngk9");
+    			attr_dev(form, "class", "search-form svelte-r5jknx");
     			add_location(form, file$4, 5, 0, 119);
     		},
     		l: function claim(nodes) {
@@ -2383,7 +2388,7 @@ var app = (function () {
     			img = element("img");
     			if (!src_url_equal(img.src, img_src_value = "/loading.gif")) attr_dev(img, "src", img_src_value);
     			attr_dev(img, "alt", "loading animation");
-    			attr_dev(img, "class", "loading-img svelte-w9eyqq");
+    			attr_dev(img, "class", "loading-img svelte-e65iee");
     			add_location(img, file$3, 4, 0, 64);
     		},
     		l: function claim(nodes) {
@@ -2454,9 +2459,11 @@ var app = (function () {
     }
 
     /* src/pages/Home.svelte generated by Svelte v3.46.6 */
+
+    const { console: console_1 } = globals;
     const file$2 = "src/pages/Home.svelte";
 
-    // (30:2) {:else}
+    // (33:2) {:else}
     function create_else_block$1(ctx) {
     	let h1;
     	let t1;
@@ -2474,8 +2481,8 @@ var app = (function () {
     			h1.textContent = "Gooogle";
     			t1 = space();
     			create_component(searchbar.$$.fragment);
-    			attr_dev(h1, "class", "svelte-rt95ey");
-    			add_location(h1, file$2, 30, 4, 744);
+    			attr_dev(h1, "class", "svelte-yjyzu6");
+    			add_location(h1, file$2, 33, 4, 869);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, h1, anchor);
@@ -2504,14 +2511,14 @@ var app = (function () {
     		block,
     		id: create_else_block$1.name,
     		type: "else",
-    		source: "(30:2) {:else}",
+    		source: "(33:2) {:else}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (28:2) {#if isLoading}
+    // (31:2) {#if isLoading}
     function create_if_block$1(ctx) {
     	let loader;
     	let current;
@@ -2544,7 +2551,7 @@ var app = (function () {
     		block,
     		id: create_if_block$1.name,
     		type: "if",
-    		source: "(28:2) {#if isLoading}",
+    		source: "(31:2) {#if isLoading}",
     		ctx
     	});
 
@@ -2571,8 +2578,8 @@ var app = (function () {
     		c: function create() {
     			div = element("div");
     			if_block.c();
-    			attr_dev(div, "class", "App svelte-rt95ey");
-    			add_location(div, file$2, 26, 0, 679);
+    			attr_dev(div, "class", "App svelte-yjyzu6");
+    			add_location(div, file$2, 29, 0, 804);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -2636,9 +2643,12 @@ var app = (function () {
     }
 
     function instance$3($$self, $$props, $$invalidate) {
+    	let $searchArticles;
     	let $searchTerm;
+    	validate_store(searchArticles, 'searchArticles');
+    	component_subscribe($$self, searchArticles, $$value => $$invalidate(3, $searchArticles = $$value));
     	validate_store(searchTerm, 'searchTerm');
-    	component_subscribe($$self, searchTerm, $$value => $$invalidate(3, $searchTerm = $$value));
+    	component_subscribe($$self, searchTerm, $$value => $$invalidate(4, $searchTerm = $$value));
     	let { $$slots: slots = {}, $$scope } = $$props;
     	validate_slots('Home', slots, []);
     	let isLoading = false;
@@ -2652,11 +2662,14 @@ var app = (function () {
 
     	async function searchGoogle() {
     		$$invalidate(0, isLoading = true);
-    		const endpoint = `http://localhost:3000/search?query=${searchQuery}`;
+    		const endpoint = `http://localhost:8000/results?query=${searchQuery}`;
 
     		try {
     			const res = await fetch(endpoint);
     			const data = await res.json();
+    			console.log(data);
+    			set_store_value(searchArticles, $searchArticles = data, $searchArticles);
+    			page.redirect('/results');
     		} catch(e) {
     			alert('An error occured!');
     		}
@@ -2667,17 +2680,20 @@ var app = (function () {
     	const writable_props = [];
 
     	Object.keys($$props).forEach(key => {
-    		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== '$$' && key !== 'slot') console.warn(`<Home> was created with unknown prop '${key}'`);
+    		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== '$$' && key !== 'slot') console_1.warn(`<Home> was created with unknown prop '${key}'`);
     	});
 
     	$$self.$capture_state = () => ({
     		SearchBar,
     		Loader,
+    		router: page,
+    		searchArticles,
     		searchTerm,
     		isLoading,
     		searchQuery,
     		handleSubmit,
     		searchGoogle,
+    		$searchArticles,
     		$searchTerm
     	});
 
@@ -2749,17 +2765,17 @@ var app = (function () {
     			p1 = element("p");
     			t4 = text(t4_value);
     			t5 = space();
-    			attr_dev(p0, "class", "topLink svelte-4p9nwu");
+    			attr_dev(p0, "class", "topLink svelte-1awzi7m");
     			add_location(p0, file$1, 13, 8, 389);
-    			attr_dev(h2, "class", "svelte-4p9nwu");
+    			attr_dev(h2, "class", "svelte-1awzi7m");
     			add_location(h2, file$1, 14, 8, 435);
-    			attr_dev(p1, "class", "svelte-4p9nwu");
+    			attr_dev(p1, "class", "svelte-1awzi7m");
     			add_location(p1, file$1, 15, 8, 468);
-    			attr_dev(div, "class", "card svelte-4p9nwu");
+    			attr_dev(div, "class", "card svelte-1awzi7m");
     			add_location(div, file$1, 12, 6, 362);
     			attr_dev(a, "href", a_href_value = /*article*/ ctx[3].link);
     			attr_dev(a, "target", "_blank");
-    			attr_dev(a, "class", "svelte-4p9nwu");
+    			attr_dev(a, "class", "svelte-1awzi7m");
     			add_location(a, file$1, 11, 4, 316);
     			this.first = a;
     		},
@@ -2841,9 +2857,9 @@ var app = (function () {
     				each_blocks[i].c();
     			}
 
-    			attr_dev(p, "class", "svelte-4p9nwu");
+    			attr_dev(p, "class", "svelte-1awzi7m");
     			add_location(p, file$1, 9, 2, 209);
-    			attr_dev(div, "class", "wrapper svelte-4p9nwu");
+    			attr_dev(div, "class", "wrapper svelte-1awzi7m");
     			add_location(div, file$1, 8, 0, 169);
     		},
     		l: function claim(nodes) {
@@ -3003,7 +3019,7 @@ var app = (function () {
     			create_component(results.$$.fragment);
     			t = space();
     			div = element("div");
-    			attr_dev(div, "class", "stats svelte-17b3fze");
+    			attr_dev(div, "class", "stats svelte-14601ni");
     			add_location(div, file, 47, 6, 1231);
     		},
     		m: function mount(target, anchor) {
@@ -3055,7 +3071,7 @@ var app = (function () {
     		c: function create() {
     			div = element("div");
     			create_component(loader.$$.fragment);
-    			attr_dev(div, "class", "loader svelte-17b3fze");
+    			attr_dev(div, "class", "loader svelte-14601ni");
     			add_location(div, file, 42, 6, 1115);
     		},
     		m: function mount(target, anchor) {
@@ -3141,15 +3157,15 @@ var app = (function () {
     			if (!src_url_equal(img.src, img_src_value = "google.png")) attr_dev(img, "src", img_src_value);
     			set_style(img, "margin-right", "45px");
     			attr_dev(img, "alt", "google logo");
-    			attr_dev(img, "class", "logo svelte-17b3fze");
+    			attr_dev(img, "class", "logo svelte-14601ni");
     			add_location(img, file, 30, 4, 837);
-    			attr_dev(div0, "class", "nav svelte-17b3fze");
+    			attr_dev(div0, "class", "nav svelte-14601ni");
     			add_location(div0, file, 29, 2, 815);
-    			attr_dev(div1, "class", "divider svelte-17b3fze");
+    			attr_dev(div1, "class", "divider svelte-14601ni");
     			add_location(div1, file, 39, 2, 1041);
-    			attr_dev(div2, "class", "content svelte-17b3fze");
+    			attr_dev(div2, "class", "content svelte-14601ni");
     			add_location(div2, file, 40, 2, 1067);
-    			attr_dev(div3, "class", "wrapper svelte-17b3fze");
+    			attr_dev(div3, "class", "wrapper svelte-14601ni");
     			add_location(div3, file, 28, 0, 791);
     		},
     		l: function claim(nodes) {
@@ -3251,7 +3267,7 @@ var app = (function () {
 
     	async function searchGoogle() {
     		$$invalidate(0, isLoading = true);
-    		const endpoint = `http://localhost:3000/search?query=${searchQuery}`;
+    		const endpoint = `http://localhost:8000/search?query=${searchQuery}`;
 
     		try {
     			const res = await fetch(endpoint);
