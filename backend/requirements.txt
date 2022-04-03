@@ -7,3 +7,4 @@ py-readability-metrics==1.4.5
 requests==2.27.1
 bs4==0.0.1
 html2text==2020.1.16
+google-api-python-client==2.42.0
