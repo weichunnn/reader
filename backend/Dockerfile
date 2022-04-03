@@ -14,4 +14,4 @@ RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
 
 # Step 4: Run the web service on container startup using gunicorn webserver.
-CMD exec gunicorn --bind :$PORT --workers 1 --worker-class uvicorn.workers.UvicornWorker  --threads 8 app.main:app
+CMD exec gunicorn --bind 0.0.0.0:$PORT --workers 1 --worker-class uvicorn.workers.UvicornWorker  --threads 8 app.main:app
