@@ -79,7 +79,7 @@ async def read_root(query: str) -> dict:
 
     toc = time.perf_counter()
     print(
-        f"Finished computing metrics for {res_list} articles in {toc - tic:0.4f} seconds"
+        f"Finished computing metrics for {len(res_list)} articles in {toc - tic:0.4f} seconds"
     )
 
     return res_list

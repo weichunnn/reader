@@ -3,11 +3,11 @@
   import Results from '../components/Results.svelte'
   import SearchBar from '../components/SearchBar.svelte'
   import Loader from '../components/Loader.svelte'
-  import { searchArticles, searchTerm } from '../store'
+  import { searchArticles, searchTerm, currentId } from '../store'
+  import Metrics from '../components/Metrics.svelte'
 
   let searchQuery = ''
   let isLoading = false
-
   async function handleSubmit() {
     searchQuery = $searchTerm.trim()
     if (!searchQuery) return
@@ -16,13 +16,12 @@
 
   async function searchGoogle() {
     isLoading = true
-    const endpoint = `http://localhost:8000/search?query=${searchQuery}`
+    const endpoint = `https://api.readabl.tech/results?query=${searchQuery}`
 
     try {
       const res = await fetch(endpoint)
       const data = await res.json()
       $searchArticles = data
-
     } catch (e) {
       alert('An error occured!')
     }
@@ -49,18 +48,12 @@
       </div>
     {:else}
       <Results articles={$searchArticles} />
-      <div class="stats" />
+      <Metrics article={$searchArticles[$currentId]} />
     {/if}
   </div>
 </div>
 
 <style>
-  .stats {
-    width: 45%;
-    height: 400px;
-    border-radius: 12px;
-    background-color: #edf2f7;
-  }
   .content {
     display: flex;
     flex-direction: row;
