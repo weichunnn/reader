@@ -30,6 +30,9 @@
     <div class="placeholder"><h3>Click one of the search results to show its readability</h3></div>
   {/if}
 </div>
+<a href="https://readable.com/readability/flesch-reading-ease-flesch-kincaid-grade-level/"
+  >More about readability</a
+>
 
 <style>
   .stats {

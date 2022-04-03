@@ -2446,7 +2446,7 @@ var app = (function () {
     			t1 = space();
     			create_component(searchbar.$$.fragment);
     			attr_dev(h1, "class", "svelte-yjyzu6");
-    			add_location(h1, file$3, 33, 4, 880);
+    			add_location(h1, file$3, 33, 4, 883);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, h1, anchor);
@@ -2543,7 +2543,7 @@ var app = (function () {
     			div = element("div");
     			if_block.c();
     			attr_dev(div, "class", "App svelte-yjyzu6");
-    			add_location(div, file$3, 29, 0, 815);
+    			add_location(div, file$3, 29, 0, 818);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -2629,7 +2629,7 @@ var app = (function () {
 
     	async function searchGoogle() {
     		$$invalidate(0, isLoading = true);
-    		const endpoint = `http://localhost:8000/results?query=${searchQuery}`;
+    		const endpoint = `https://api.readabl.tech/results?query=${searchQuery}`;
 
     		try {
     			const res = await fetch(endpoint);
@@ -3205,6 +3205,8 @@ var app = (function () {
 
     function create_fragment$2(ctx) {
     	let div;
+    	let t0;
+    	let a;
 
     	function select_block_type(ctx, dirty) {
     		if (/*metrics*/ ctx[0]) return create_if_block$1;
@@ -3218,8 +3220,13 @@ var app = (function () {
     		c: function create() {
     			div = element("div");
     			if_block.c();
+    			t0 = space();
+    			a = element("a");
+    			a.textContent = "More about readability";
     			attr_dev(div, "class", "stats svelte-1fhq8ym");
     			add_location(div, file$1, 16, 0, 452);
+    			attr_dev(a, "href", "https://readable.com/readability/flesch-reading-ease-flesch-kincaid-grade-level/");
+    			add_location(a, file$1, 32, 0, 991);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -3227,6 +3234,8 @@ var app = (function () {
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
     			if_block.m(div, null);
+    			insert_dev(target, t0, anchor);
+    			insert_dev(target, a, anchor);
     		},
     		p: function update(ctx, [dirty]) {
     			if (current_block_type === (current_block_type = select_block_type(ctx)) && if_block) {
@@ -3246,6 +3255,8 @@ var app = (function () {
     		d: function destroy(detaching) {
     			if (detaching) detach_dev(div);
     			if_block.d();
+    			if (detaching) detach_dev(t0);
+    			if (detaching) detach_dev(a);
     		}
     	};
 
@@ -3428,7 +3439,7 @@ var app = (function () {
     			div = element("div");
     			create_component(loader.$$.fragment);
     			attr_dev(div, "class", "loader svelte-pw73f2");
-    			add_location(div, file, 44, 6, 1206);
+    			add_location(div, file, 44, 6, 1209);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
@@ -3566,15 +3577,15 @@ var app = (function () {
     			set_style(img, "margin-right", "45px");
     			attr_dev(img, "alt", "google logo");
     			attr_dev(img, "class", "logo svelte-pw73f2");
-    			add_location(img, file, 32, 4, 928);
+    			add_location(img, file, 32, 4, 931);
     			attr_dev(div0, "class", "nav svelte-pw73f2");
-    			add_location(div0, file, 31, 2, 906);
+    			add_location(div0, file, 31, 2, 909);
     			attr_dev(div1, "class", "divider svelte-pw73f2");
-    			add_location(div1, file, 41, 2, 1132);
+    			add_location(div1, file, 41, 2, 1135);
     			attr_dev(div2, "class", "content svelte-pw73f2");
-    			add_location(div2, file, 42, 2, 1158);
+    			add_location(div2, file, 42, 2, 1161);
     			attr_dev(div3, "class", "wrapper svelte-pw73f2");
-    			add_location(div3, file, 30, 0, 882);
+    			add_location(div3, file, 30, 0, 885);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -3695,7 +3706,7 @@ var app = (function () {
 
     	async function searchGoogle() {
     		$$invalidate(0, isLoading = true);
-    		const endpoint = `http://localhost:8000/results?query=${searchQuery}`;
+    		const endpoint = `https://api.readabl.tech/results?query=${searchQuery}`;
 
     		try {
     			const res = await fetch(endpoint);
