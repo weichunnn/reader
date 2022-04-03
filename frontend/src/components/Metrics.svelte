@@ -17,8 +17,10 @@
 <div class="stats">
   {#if metrics}
     <h1>Reading Metrics</h1>
-    <a href="https://readable.com/readability/flesch-reading-ease-flesch-kincaid-grade-level/"
-      >More about readability</a
+    <a
+      href="https://readable.com/readability/flesch-reading-ease-flesch-kincaid-grade-level/"
+      style="width:100%;padding-bottom:20px"
+      target="_blank">More about readability</a
     >
     <strong>This text is suitable for {extract(metrics['Flesch reading ease'])}</strong>
 
