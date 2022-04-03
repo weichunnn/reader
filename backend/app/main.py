@@ -34,7 +34,7 @@ app.add_middleware(
 
 @app.get("/", tags=["root"])
 async def read_root() -> dict:
-    return {"message": "hi!"}
+    return {"message": "hello, world!"}
 
 
 @app.get("/results")
@@ -70,7 +70,7 @@ async def read_root(query: str) -> dict:
             "title": item["title"],
             "description": item["snippet"],
             "link": item["link"],
-            "text": text_metric[idx][0],
+            # "text": text_metric[idx][0],
             "metrics": text_metric[idx][1],
         }
         res_list.append(temp_dict)
@@ -79,6 +79,8 @@ async def read_root(query: str) -> dict:
     print(
         f"Finished computing metrics for {len(res_list)} articles in {toc - tic:0.4f} seconds"
     )
+
+    res_list.sort(key=lambda item: item.get("metrics")["Flesch-Kincaid score"])
 
     return res_list
 
@@ -110,9 +112,9 @@ def extract_text_metrics(url):
         ari = r.ari()
         cl = r.coleman_liau()
         gf = r.gunning_fog()
-        # s = r.smog(all_sentences=True)
-        # sp = r.spache()
-        # lw = r.linsear_write()
+        s = r.smog(all_sentences=True)
+        sp = r.spache()
+        lw = r.linsear_write()
     except Exception as e:
         print(e)
         return None
@@ -121,7 +123,7 @@ def extract_text_metrics(url):
         "Flesch-Kincaid score": fk.score,
         "Flesch-Kincaid grade level": fk.grade_level,
         "Flesch score": f.score,
-        "Flesch score": f.ease,
+        "Flesch reading ease": f.ease,
         "Flesch grade level": f.grade_levels,
         "Dale-Chall score": dc.score,
         "Dale-Chall grade level": dc.grade_levels,
@@ -132,12 +134,12 @@ def extract_text_metrics(url):
         "Coleman-Liau grade level": cl.grade_level,
         "Gunning fog score": gf.score,
         "Gunning fog grade level": gf.grade_level,
-        # "SMOG score": s.score,
-        # "SMOG grade level": s.grade_level,
-        # "Spache score": sp.score,
-        # "Spache grade level": sp.grade_level,
-        # "Linsear Write score": lw.score,
-        # "Linsear Write grade level": lw.grade_level,
+        "SMOG score": s.score,
+        "SMOG grade level": s.grade_level,
+        "Spache score": sp.score,
+        "Spache grade level": sp.grade_level,
+        "Linsear Write score": lw.score,
+        "Linsear Write grade level": lw.grade_level,
     }
 
     return (text, metrics)
@@ -148,7 +150,7 @@ def google_search(service, query, cse_id):
     return res
 
 
-def google_next_page(service, query, cse_id, res, page, url_items):
+def google_next_page(service, query, cse_id, res, page, url_items, max_page=4):
     next_res = (
         service.cse()
         .list(
@@ -163,7 +165,7 @@ def google_next_page(service, query, cse_id, res, page, url_items):
         url_items.append(item)
     page += 1
 
-    if page == 10:
+    if page == max_page:
         return url_items
 
     return google_next_page(service, query, cse_id, next_res, page, url_items)

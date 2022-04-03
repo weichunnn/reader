@@ -4,6 +4,7 @@
   import { currentId } from '../store'
 
   export let articles
+
   $: articles_length = articles.length
   let randomTime = Math.random().toFixed(2)
 </script>
@@ -12,16 +13,14 @@
   <p>About {articles_length} results {randomTime} seconds</p>
   {#each articles as article (article.id)}
     <div class="card">
-      <div>
+      <div class="card-content">
         <a href={article.link} target="_blank">
           <p class="topLink">{article.link}</p>
           <h2>{article.title}</h2>
         </a>
         <p>{article.description}</p>
       </div>
-      <div>
-        <button class="metrics" on:click={() => ($currentId = article.id)}>View metrics</button>
-      </div>
+      <button class="metrics" on:click={() => ($currentId = article.id)}>Readr Metrics</button>
     </div>
   {/each}
 </div>
@@ -33,7 +32,6 @@
 
   a {
     text-decoration: none;
-    position: relative;
   }
 
   a:hover {
@@ -42,6 +40,8 @@
 
   .card {
     display: flex;
+    flex-direction: row;
+    align-items: center;
     margin: 20px 0;
     width: 100%;
     padding: 20px;
@@ -50,10 +50,15 @@
     color: black;
   }
 
+  .card-content {
+    display: flex;
+    flex-direction: column;
+  }
+
   .metrics {
-    margin-left: 4rem;
-    position: absolute;
-    z-index: 100;
+    border: none;
+    padding: 16px 24px;
+    border-radius: 12px;
   }
 
   .card:hover {

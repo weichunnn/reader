@@ -16,7 +16,7 @@
 
   async function searchGoogle() {
     isLoading = true
-    const endpoint = `https://api.readabl.tech/results?query=${searchQuery}`
+    const endpoint = `http://localhost:8000/results?query=${searchQuery}`
 
     try {
       const res = await fetch(endpoint)
@@ -46,9 +46,11 @@
       <div class="loader">
         <Loader />
       </div>
-    {:else}
+    {:else if $searchArticles.length !== 0}
       <Results articles={$searchArticles} />
-      <Metrics article={$searchArticles[$currentId]} />
+      {#if $currentId !== null}
+        <Metrics metrics={$searchArticles.find((article) => article.id === $currentId).metrics} />
+      {/if}
     {/if}
   </div>
 </div>
@@ -58,6 +60,8 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    width: 100%;
+    height: 100%;
   }
   .loader {
     display: flex;
@@ -81,6 +85,7 @@
     display: flex;
     flex-direction: column;
     min-height: 100%;
+    height: 100%;
     width: 100%;
     max-width: 1500px;
   }

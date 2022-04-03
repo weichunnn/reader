@@ -2,4 +2,4 @@ import { writable } from 'svelte/store'
 
 export const searchArticles = writable([])
 export const searchTerm = writable('')
-export let currentId = writable(1)
+export let currentId = writable(null)
