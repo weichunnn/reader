@@ -1,4 +1,4 @@
-# Svelte-FastAPI
+# Readabl
 
 ## Inspiration
 Elementary school kids are very savvy with searching via Google, and while sometimes the content returned are relevant, they may not be at a suitable reading level when the first search results talks about something like phytochemicals or pharmacology. Is there a way to assess whether links in a search result are at the level users desire to read?
